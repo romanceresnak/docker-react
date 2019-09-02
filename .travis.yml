@@ -1,10 +1,10 @@
-sudo:required # we need super user permission
+sudo: required # we need super user permission
 services:
-  - docker  # we need copy of docker
+  - docker # we need copy of docker
 
 before_install:
-  - docker build -t romanceresnak/docker-react -f Dockerfile.dev .  # this return to us image id
+  - docker build -t romanceresnak/docker-react -f Dockerfile.dev . # this return to us image id
 
 script:
-  - docker run romanceresnak/docker-react npm run test -- --coverage  # -- --coverage means finish the process after all test are done 
+  - docker run romanceresnak/docker-react npm run test -- --coverage # -- --coverage means finish the process after all test are done
   #sdad
