@@ -1,0 +1,20 @@
+version: "3"
+services:
+  web:
+    build:
+      context: . # where we want all the files and folders for this image pulled from
+      # if it want be in the same folder than it looks like this context : reactproject
+      dockerfile: Dockerfile.dev # look at current working directory and find Dockerfile.dev to build the image
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules # do not try to map folder up and against app node_modules inside the containers
+      - .:/app # current folder outside the container to app folder inside container
+  tests:
+    build:
+      context: . # context from local working directory
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules # do not accidentally override that directory
+      - .:/app # also map up current working directory to app folder inside container
+    command: ["npm", "run", "test"] # overriding starting command with npm run test rather then npm run start
