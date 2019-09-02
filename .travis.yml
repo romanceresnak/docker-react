@@ -7,3 +7,4 @@ before_install:
 
 script:
   - docker run romanceresnak/docker-react npm run test -- --coverage  # -- --coverage means finish the process after all test are done 
+  #sdad
