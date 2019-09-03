@@ -8,3 +8,16 @@ before_install:
 script:
   - docker run -e CI=true romanceresnak/docker-react npm run test -- --coverage # -- --coverage means finish the process after all test are done
   #sdad
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-2" # from app url docker-env.ajddt2tgz9.eu-west-2.elasticbeanstalk.com/
+  app: "docker"
+  env: "Docker-env"
+  bucket_name: "elasticbeanstalk-eu-west-2-324853639928" # need to find s3 which is automatically created, it is like hard drive
+  bucket_path: "docker" #exactly as app name
+  on:
+    branch: master #only deploy if it merge to master branch
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
