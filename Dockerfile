@@ -13,6 +13,6 @@ RUN npm run build
 # /app/build <--- all the stuff
 
 FROM nginx
-
+EXPOSE 80
 #copy something from a different phase
 COPY --from=builder /app/build  /usr/share/nginx/html
